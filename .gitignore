@@ -1,0 +1,6 @@
+
+*.pyc
+.coverage
+py2/
+django_amp_renderer.egg-info
+build
