@@ -25,11 +25,9 @@ class AMPRenderingMiddleware(MiddlewareMixin):
 
         try:
             content = response.content.decode('utf-8').strip()
-        except DjangoUnicodeDecodeError:
+        except (DjangoUnicodeDecodeError, UnicodeDecodeError):
             pass
         else:
-            test_content = content
-
             """If the script is included in the document, then apply the
             transformations that the script would eventually happen on the
             client.
@@ -48,7 +46,7 @@ class AMPRenderingMiddleware(MiddlewareMixin):
             regex = \
                 r"""<script(\s+async)?\s+src=['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
 
-            if re.search(regex, test_content):
+            if re.search(regex, content):
                 parser = AMPRenderer(
                     runtime_version=settings.AMP_RUNTIME_VERSION,
                     runtime_styles=settings.AMP_RUNTIME_STYLES)

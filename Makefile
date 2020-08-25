@@ -8,7 +8,7 @@ lint:
 
 test:
 	coverage erase
-	coverage run --source=amp_renderer -m pytest
+	coverage run --source=django_amp_renderer -m pytest
 	coverage report -m
 
 dev:
