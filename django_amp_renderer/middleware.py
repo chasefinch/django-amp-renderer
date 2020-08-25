@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 # Standard Library
+import re
 from builtins import bytes  # noqa
 from builtins import str  # noqa
 
@@ -27,15 +28,35 @@ class AMPRenderingMiddleware(MiddlewareMixin):
         except DjangoUnicodeDecodeError:
             pass
         else:
-            parser = AMPRenderer(
-                runtime_version=settings.AMP_RUNTIME_VERSION,
-                runtime_styles=settings.AMP_RUNTIME_STYLES)
+            test_content = content
 
-            parser.should_strip_comments = self.should_strip_comments
-            parser.should_trim_attrs = self.should_trim_attrs
-            content = parser.render(content)
+            """If the script is included in the document, then apply the
+            transformations that the script would eventually happen on the
+            client.
 
-            response.content = content
-            response['Content-Length'] = len(response.content)
+            Caveats:
+                This regex doesn’t check that quotes are balanced, or
+                that async is definitely present, or that it doesn’t appear
+                before AND after the url, and it doesn’t allow any other
+                attributes on the script tag.
+
+                This only applies the middleware if AMP v0 is included directly
+                from the https://cdn.ampproject.org/v0.js. If using RTVs or
+                some other method, this won’t apply as written.
+            """
+
+            regex = r"""<script(\s+async)?\s+['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
+
+            if re.search(regex, test_content):
+                parser = AMPRenderer(
+                    runtime_version=settings.AMP_RUNTIME_VERSION,
+                    runtime_styles=settings.AMP_RUNTIME_STYLES)
+
+                parser.should_strip_comments = self.should_strip_comments
+                parser.should_trim_attrs = self.should_trim_attrs
+                content = parser.render(content)
+
+                response.content = content
+                response['Content-Length'] = len(response.content)
 
         return response

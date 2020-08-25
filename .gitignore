@@ -1,6 +1,6 @@
 
 *.pyc
 .coverage
-py2/
+py3/
 django_amp_renderer.egg-info
-build
+build/
