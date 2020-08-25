@@ -45,7 +45,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 some other method, this won’t apply as written.
             """
 
-            regex = r"""<script(\s+async)?\s+['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
+            regex = \
+                r"""<script(\s+async)?\s+src=['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
 
             if re.search(regex, test_content):
                 parser = AMPRenderer(
