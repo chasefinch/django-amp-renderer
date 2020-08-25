@@ -2,6 +2,7 @@
 
 coverage
 pytest
+mock
 
 isort
 flake8
