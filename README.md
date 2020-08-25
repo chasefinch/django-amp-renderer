@@ -30,11 +30,11 @@ AMPRenderer has optional comment removal and attribute trimming. Those are disab
 
 ## Testing, etc.
 
-Sort imports (Requires Python >= 3.5):
+Sort imports (Requires Python >= 3.6):
 
 	make normal
 
-Lint (Requires Python >= 3.5):
+Lint (Requires Python >= 3.6):
 
 	make lint
 
