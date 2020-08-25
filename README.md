@@ -30,7 +30,7 @@ AMPRenderer has optional comment removal and attribute trimming. Those are disab
 	    should_strip_comments = True
 	    should_trim_attributes = True
 
-You can apply the middleware to all requests, even non-AMP pages; AMPRenderer will only be applied if the document contains the v0.js script (`https://cdn.ampproject.org/v0.js`).
+You can apply the middleware to all requests, even non-AMP pages. The transformations will only be applied if the document contains the v0.js script (`https://cdn.ampproject.org/v0.js`).
 
 ## Testing, etc.
 
