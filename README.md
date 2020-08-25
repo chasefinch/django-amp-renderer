@@ -20,7 +20,9 @@ To apply the middleware, add `django_amp_renderer.middleware.AMPRenderingMiddlew
 The middleware expects the variables `AMP_RUNTIME_VERSION` and `AMP_RUNTIME_STYLES` to be set in your Django settings file. For AMP_RUNTIME_VERSION, provide the current AMP runtime version number as a string (to avoid losing leading zeroes), and for AMP_RUNTIME_STYLES, provide the full contents of https://cdn.ampproject.org/v0.css.
 
 	AMP_RUNTIME_VERSION = '012007242032002'
-	AMP_RUNTIME_STYLES = """html{overflow-x:hidden!important}…"""
+	AMP_RUNTIME_STYLES = """
+	    html{overflow-x:hidden!important}…
+	""".strip()
 
 AMPRenderer has optional comment removal and attribute trimming. Those are disabled by default; To access them, use a subclass of the middleware and set the variables to `True`. They are passed along to the renderer.
 
