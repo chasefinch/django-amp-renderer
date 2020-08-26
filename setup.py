@@ -29,7 +29,7 @@ setuptools.setup(
     python_requires='>=2.7',
     install_requires=[
         'future;python_version<="2.7"',
-        'amp-renderer',
+        'amp-renderer>=1.1.1',
         'django>=1.11.0',
     ],
 )
