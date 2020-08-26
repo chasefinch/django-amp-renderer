@@ -16,12 +16,11 @@ from django.utils.encoding import DjangoUnicodeDecodeError
 
 
 class AMPRenderingMiddleware(MiddlewareMixin):
+    # These will be passed along to AMP Renderer
     should_strip_comments = False
     should_trim_attrs = False
 
     def process_response(self, request, response):
-        self.no_boilerplate = False
-
         if not response.has_header('Content-Type') or 'text/html' not in response['Content-Type']:
             return response
 
@@ -44,13 +43,12 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 from the https://cdn.ampproject.org/v0.js. If using RTVs or
                 some other method, this won’t apply as written.
             """
-
-            boilerplate_header = 'Ignored'
-
             regex = \
                 r"""<script(\s+async)?\s+src=['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
 
             if re.search(regex, content):
+                boilerplate_header = 'Ignored'
+
                 parser = AMPRenderer(
                     runtime_version=settings.AMP_RUNTIME_VERSION,
                     runtime_styles=settings.AMP_RUNTIME_STYLES)
@@ -65,6 +63,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 if parser.no_boilerplate:
                     boilerplate_header = 'Removed'
 
+            """Set a header on the response for downstream code to know whether
+            the boilerplate was removed."""
             response['Boilerplate-Status'] = boilerplate_header
 
         return response
