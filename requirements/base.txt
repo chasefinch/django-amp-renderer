@@ -1,4 +1,4 @@
 future;python_version<='2.7'
-amp-renderer>=1.1.1,<2
+amp-renderer>=1.1.2,<2
 
 Django>=1.11
