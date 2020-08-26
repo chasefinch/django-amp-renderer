@@ -62,7 +62,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 response.content = content
                 response['Content-Length'] = len(response.content)
 
-                boilerplate_header = 'Removed'
+                if parser.no_boilerplate:
+                    boilerplate_header = 'Removed'
 
             response['Boilerplate-Status'] = boilerplate_header
 
