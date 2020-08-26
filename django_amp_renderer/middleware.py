@@ -63,8 +63,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 if parser.no_boilerplate:
                     boilerplate_header = 'Removed'
 
-            """Set a header on the response for downstream code to know whether
-            the boilerplate was removed."""
-            response['Boilerplate-Status'] = boilerplate_header
+                """Set a header on the response for downstream code to know
+                whether the boilerplate was removed."""
+                response['Boilerplate-Status'] = boilerplate_header
 
         return response

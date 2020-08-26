@@ -84,7 +84,7 @@ class TestMiddleware:
 
         self.middleware.process_response(self.request, self.response)
         assert not MockAMPRenderer.called
-        self.response.__setitem__.assert_called_with(self.BOILERPLATE_HEADER_KEY, 'Ignored')
+        self.response.__setitem__.assert_not_called()
 
     def _setup_renderer(self, MockAMPRenderer):  # noqa
         self.renderer = MagicMock()
