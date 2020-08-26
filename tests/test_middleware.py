@@ -54,6 +54,17 @@ class TestMiddleware:
                 </body>
             </html>
         """,
+
+        """
+            <!doctype html>
+            <html>
+                <head>
+                    <script type='module' async src="https://cdn.ampproject.org/lts/v0.js"></script>
+                </head>
+                <body>
+                </body>
+            </html>
+        """,
     ]]
 
     def _get_response():
@@ -120,6 +131,18 @@ class TestMiddleware:
         self._setup_renderer(MockAMPRenderer)
 
         self.response.content = self.TRIGGERING[2]
+
+        self.middleware.process_response(self.request, self.response)
+
+        assert MockAMPRenderer.called
+        self.renderer.render.assert_called_once()
+        self.response.__setitem__.assert_called_with(self.BOILERPLATE_HEADER_KEY, 'Removed')
+
+    @patch('django_amp_renderer.middleware.AMPRenderer')
+    def test_triggering_4(self, MockAMPRenderer):  # noqa
+        self._setup_renderer(MockAMPRenderer)
+
+        self.response.content = self.TRIGGERING[3]
 
         self.middleware.process_response(self.request, self.response)
 

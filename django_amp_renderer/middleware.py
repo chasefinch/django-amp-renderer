@@ -34,17 +34,23 @@ class AMPRenderingMiddleware(MiddlewareMixin):
             client.
 
             Caveats:
-                This regex doesn’t check that quotes are balanced, or
-                that async is definitely present, or that it doesn’t appear
-                before AND after the url, and it doesn’t allow any other
-                attributes on the script tag.
-
                 This only applies the middleware if AMP v0 is included directly
-                from the https://cdn.ampproject.org/v0.js. If using RTVs or
+                from the https://cdn.ampproject.org/v0.(m?)js. If using RTVs or
                 some other method, this won’t apply as written.
+
+                This regex doesn’t check that quotes are balanced, or fully
+                confirm that the import script is valid.
             """
+
+            attribute_regexes = [
+                r"""async""",
+                r"""type=['"]module['"]""",
+            ]
+
             regex = \
-                r"""<script(\s+async)?\s+src=['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
+                r"""<script({opt})*\s+src=['"]https://cdn\.ampproject\.org/(lts/)?v0\.m?js['"]""" \
+                r"""({opt})*\s*>\s*</script>""".format(
+                    opt='|'.join(r'\s+{}'.format(r) for r in attribute_regexes))
 
             if re.search(regex, content):
                 boilerplate_header = 'Ignored'
