@@ -20,6 +20,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
     should_trim_attrs = False
 
     def process_response(self, request, response):
+        self.no_boilerplate = False
+
         if not response.has_header('Content-Type') or 'text/html' not in response['Content-Type']:
             return response
 
@@ -43,6 +45,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 some other method, this won’t apply as written.
             """
 
+            boilerplate_header = 'Ignored'
+
             regex = \
                 r"""<script(\s+async)?\s+src=['"]https://cdn\.ampproject\.org/v0\.js['"](\s+async)?\s*>\s*</script>"""
 
@@ -57,5 +61,9 @@ class AMPRenderingMiddleware(MiddlewareMixin):
 
                 response.content = content
                 response['Content-Length'] = len(response.content)
+
+                boilerplate_header = 'Removed'
+
+            response['Boilerplate-Status'] = boilerplate_header
 
         return response

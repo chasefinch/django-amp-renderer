@@ -18,6 +18,8 @@ settings.AMP_RUNTIME_STYLES = 'body{background:pink;}'
 
 @patch('django_amp_renderer.middleware.settings', new=settings)
 class TestMiddleware:
+    BOILERPLATE_HEADER_KEY = 'Boilerplate-Status'
+
     NON_TRIGGERING = '<!doctype html><html><head></head><body></body></html>'.encode('utf-8')
     TRIGGERING = [html.encode('utf-8') for html in [
         """
@@ -77,11 +79,12 @@ class TestMiddleware:
         del self.middleware
 
     @patch('django_amp_renderer.middleware.AMPRenderer')
-    def test_non_triggering_(self, MockAMPRenderer):  # noqa
+    def test_non_triggering(self, MockAMPRenderer):  # noqa
         self.response.content = self.NON_TRIGGERING
 
         self.middleware.process_response(self.request, self.response)
         assert not MockAMPRenderer.called
+        self.response.__setitem__.assert_called_with(self.BOILERPLATE_HEADER_KEY, 'Ignored')
 
     def _setup_renderer(self, MockAMPRenderer):  # noqa
         self.renderer = MagicMock()
@@ -98,6 +101,7 @@ class TestMiddleware:
 
         assert MockAMPRenderer.called
         self.renderer.render.assert_called_once()
+        self.response.__setitem__.assert_called_with(self.BOILERPLATE_HEADER_KEY, 'Removed')
 
     @patch('django_amp_renderer.middleware.AMPRenderer')
     def test_triggering_2(self, MockAMPRenderer):  # noqa
@@ -109,6 +113,7 @@ class TestMiddleware:
 
         assert MockAMPRenderer.called
         self.renderer.render.assert_called_once()
+        self.response.__setitem__.assert_called_with(self.BOILERPLATE_HEADER_KEY, 'Removed')
 
     @patch('django_amp_renderer.middleware.AMPRenderer')
     def test_triggering_3(self, MockAMPRenderer):  # noqa
@@ -120,6 +125,7 @@ class TestMiddleware:
 
         assert MockAMPRenderer.called
         self.renderer.render.assert_called_once()
+        self.response.__setitem__.assert_called_with(self.BOILERPLATE_HEADER_KEY, 'Removed')
 
     @patch('django_amp_renderer.middleware.AMPRenderer')
     def test_not_html(self, MockAMPRenderer):  # noqa
@@ -131,6 +137,7 @@ class TestMiddleware:
         self.middleware.process_response(self.request, self.response)
 
         assert not MockAMPRenderer.called
+        self.response.__setitem__.assert_not_called()
 
     @patch('django_amp_renderer.middleware.AMPRenderer')
     def test_non_unicode(self, MockAMPRenderer):  # noqa
@@ -139,3 +146,4 @@ class TestMiddleware:
         self.middleware.process_response(self.request, self.response)
 
         assert not MockAMPRenderer.called
+        self.response.__setitem__.assert_not_called()

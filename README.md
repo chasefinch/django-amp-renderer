@@ -32,6 +32,8 @@ AMPRenderer has optional comment removal and attribute trimming. Those are disab
 
 You can apply the middleware to all requests, even non-AMP pages. The transformations will only be applied if the document contains the v0.js script (`https://cdn.ampproject.org/v0.js`).
 
+If the transformation is applied, the `Boilerplate-Status` header of the response will either be set to "Removed" or "Ignored", based on whether the boilerplate was able to be removed by the renderer.
+
 ## Testing, etc.
 
 Sort imports (Requires Python >= 3.6):
