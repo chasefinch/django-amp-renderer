@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='django-amp-renderer',
-    version='1.1.1',
+    version='1.1.2',
     author='Chase Finch',
     author_email='chase@finch.email',
     description='Middleware for applying AMP Renderer to the output of a request in Django.',
@@ -29,7 +29,7 @@ setuptools.setup(
     python_requires='>=2.7',
     install_requires=[
         'future;python_version<="2.7"',
-        'amp-renderer>=1.1.1',
+        'amp-renderer>=1.1.2',
         'django>=1.11.0',
     ],
 )
