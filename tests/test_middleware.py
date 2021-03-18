@@ -61,7 +61,7 @@ class TestMiddleware:
                 <head>
                     <script
                         type='module'
-                        crossorigin="asynchronous"
+                        crossorigin="anonymous"
                         async src="https://cdn.ampproject.org/lts/v0.js"
                     ></script>
                 </head>
