@@ -59,7 +59,11 @@ class TestMiddleware:
             <!doctype html>
             <html>
                 <head>
-                    <script type='module' async src="https://cdn.ampproject.org/lts/v0.js"></script>
+                    <script
+                        type='module'
+                        crossorigin="asynchronous"
+                        async src="https://cdn.ampproject.org/lts/v0.js"
+                    ></script>
                 </head>
                 <body>
                 </body>

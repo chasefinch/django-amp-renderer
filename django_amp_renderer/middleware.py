@@ -45,7 +45,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
             attribute_regexes = [
                 r"""defer""",
                 r"""async""",
-                r"""type=['"]module['"]""",
+                r"""type=['"]?module['"]?""",
+                r"""crossorigin(=['"]?asynchronous['"]?)?""",
             ]
 
             regex = \
