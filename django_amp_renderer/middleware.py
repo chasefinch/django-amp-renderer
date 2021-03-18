@@ -46,7 +46,7 @@ class AMPRenderingMiddleware(MiddlewareMixin):
                 r"""defer""",
                 r"""async""",
                 r"""type=['"]?module['"]?""",
-                r"""crossorigin(=['"]?asynchronous['"]?)?""",
+                r"""crossorigin(=['"]?anonymous['"]?)?""",
             ]
 
             regex = \
