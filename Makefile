@@ -1,6 +1,6 @@
-default: normal lint test
+default: format lint test
 
-normal:
+format:
 	isort .
 
 lint:
@@ -11,5 +11,5 @@ test:
 	coverage run --source=django_amp_renderer -m pytest
 	coverage report -m
 
-dev:
-	pip install -r requirements/dev.txt
+develop:
+	pip install -r requirements/develop.txt

@@ -40,7 +40,7 @@ If the transformation is applied, the `Boilerplate-Status` header of the respons
 
 Sort imports (Requires Python >= 3.6):
 
-	make normal
+	make format
 
 Lint (Requires Python >= 3.6):
 
