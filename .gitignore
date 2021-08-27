@@ -5,3 +5,4 @@ py3/
 django_amp_renderer.egg-info
 build/
 prof/
+dist/
