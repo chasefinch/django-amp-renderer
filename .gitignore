@@ -1,8 +1,10 @@
 
 *.pyc
 .coverage
-py3/
 django_amp_renderer.egg-info
+bin/
+lib/
 build/
 prof/
 dist/
+pyvenv.cfg
