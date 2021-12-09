@@ -7,7 +7,7 @@ Middleware for applying [AMP Renderer](https://github.com/chasefinch/amp-rendere
 ## Usage
 
 Install via PyPI:
-	
+
 	pip install django-amp-renderer
 
 To apply the middleware, add `django_amp_renderer.middleware.AMPRenderingMiddleware` to `MIDDLEWARE` in your Django settings file:
@@ -37,6 +37,10 @@ You can apply the middleware to all requests, even non-AMP pages. The transforma
 If the transformation is applied, the `Boilerplate-Status` header of the response will either be set to "Removed" or "Ignored", based on whether the boilerplate was able to be removed by the renderer.
 
 ## Testing, etc.
+
+Install development requirements:
+
+	make install
 
 Sort imports (Requires Python >= 3.6):
 
