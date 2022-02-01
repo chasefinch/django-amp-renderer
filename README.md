@@ -38,15 +38,15 @@ If the transformation is applied, the `Boilerplate-Status` header of the respons
 
 ## Testing, etc.
 
-Install development requirements:
+Install development requirements (Requires Python >= 3.7):
 
 	make install
 
-Sort imports (Requires Python >= 3.6):
+Sort imports:
 
 	make format
 
-Lint (Requires Python >= 3.6):
+Lint:
 
 	make lint
 
