@@ -2,7 +2,7 @@
 
 ![Python 3.6+](https://img.shields.io/badge/python-3.6%2B-blue) ![Django 2.2+](https://img.shields.io/badge/django-%202.2%2B-blue) [![Build Status](https://travis-ci.com/chasefinch/django-amp-renderer.svg?branch=main)](https://travis-ci.com/chasefinch/django-amp-renderer) ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
-Middleware for applying [AMP Renderer](https://github.com/chasefinch/amp-renderer) to the output of a request in Django.
+Middleware for applying [AMP Renderer](https://github.com/chasefinch/amp-renderer) to the output of a request in Django. Tested in Python 3.8 and above, but works on Python 3.6+.
 
 ## Usage
 
@@ -38,7 +38,7 @@ If the transformation is applied, the `Boilerplate-Status` header of the respons
 
 ## Testing, etc.
 
-Install development requirements (Requires Python >= 3.7):
+Install development requirements (Requires Python >= 3.8):
 
 	make install
 
