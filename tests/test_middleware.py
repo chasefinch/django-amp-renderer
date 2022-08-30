@@ -4,7 +4,6 @@
 from mock import MagicMock, Mock, patch
 
 # Django AMP Renderer
-# AMP Renderer
 from django_amp_renderer.middleware import AMPRenderingMiddleware
 
 settings = Mock()
