@@ -29,8 +29,8 @@ For `AMP_RUNTIME_VERSION`, provide the current AMP runtime version number as a s
 AMPRenderer has optional comment removal and attribute trimming. Those are disabled by default; To access them, use a subclass of the middleware and set the variables to `True`. They are passed along to the renderer.
 
 	class TransformingMiddleware(AMPRenderingMiddleware):
-	    should_strip_comments = True
-	    should_trim_attributes = True
+	    strip_comments = True
+	    trim_attributes = True
 
 You can apply the middleware to all requests, even non-AMP pages. The transformations will only be applied if the document contains the v0.js script (`https://cdn.ampproject.org/v0.js`).
 

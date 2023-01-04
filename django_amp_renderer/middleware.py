@@ -16,8 +16,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
     """Apply AMPRenderer to the output of Django views."""
 
     # These will be passed along to AMP Renderer
-    should_strip_comments = False
-    should_trim_attrs = False
+    strip_comments = False
+    trim_attrs = False
 
     def process_response(self, request, response):
         """Process the response after the view has rendered it."""
@@ -65,8 +65,8 @@ class AMPRenderingMiddleware(MiddlewareMixin):
             runtime_styles=settings.AMP_RUNTIME_STYLES,
         )
 
-        parser.should_strip_comments = self.should_strip_comments
-        parser.should_trim_attrs = self.should_trim_attrs
+        parser.strip_comments = self.strip_comments
+        parser.trim_attrs = self.trim_attrs
         response_content = parser.render(response_content)
 
         response.content = response_content
