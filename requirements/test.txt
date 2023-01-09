@@ -23,4 +23,4 @@ flake8==6.0.0
 
   # Lock version
   pyflakes==3.0.1
-  pycodestyle==2.9.1
+  pycodestyle==2.10.0
