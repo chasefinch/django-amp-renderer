@@ -1,6 +1,6 @@
 -r base.txt
 
-coverage==7.0.4
+coverage==7.2.2
 pytest==7.2.0
 mock==5.0.0
 
