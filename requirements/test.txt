@@ -4,17 +4,3 @@
 coverage==7.13.5
 pytest==8.3.4
 mock==5.2.0
-
-# Configuration sync
-nitpick==0.38.1
-
-# Formatting
-ruff==0.15.8
-docformatter==1.7.7
-add-trailing-comma==4.0.0
-
-# Linting (WPS via flake8)
-wemake-python-styleguide==1.6.1
-
-# Type checking
-ty==0.0.26

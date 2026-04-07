@@ -69,7 +69,7 @@ test:
 setup:
 	@if [ ! -x "$(UV)" ]; then curl -LsSf https://astral.sh/uv/install.sh | sh; fi
 	$(UV) venv --prompt "django-amp-renderer" $(VENV_DIR)
-	$(UV) pip install --python $(VENV_DIR) -r requirements/test.txt
+	$(UV) pip install --python $(VENV_DIR) -r requirements/develop.txt
 	@printf "\n\e[1mSetup complete!\e[0m\n\n"
 	@echo "Activate the virtual environment with:"
 	@echo
@@ -77,6 +77,6 @@ setup:
 	@echo
 
 install:
-	$(UV) pip install -r requirements/test.txt
+	$(UV) pip install -r requirements/develop.txt
 
 .PHONY: default sync sync-spec configure configure-spec format lint check check-py test setup install
