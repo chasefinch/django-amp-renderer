@@ -2,6 +2,7 @@
 
 # Standard Library
 import re
+from typing import TYPE_CHECKING
 
 # Third Party
 from amp_renderer import AMPRenderer
@@ -11,6 +12,10 @@ from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import DjangoUnicodeDecodeError
 
+if TYPE_CHECKING:
+    # Django
+    from django.http import HttpRequest, HttpResponse
+
 
 class AMPRenderingMiddleware(MiddlewareMixin):
     """Apply AMPRenderer to the output of Django views."""
@@ -19,7 +24,7 @@ class AMPRenderingMiddleware(MiddlewareMixin):
     strip_comments = False
     trim_attrs = False
 
-    def process_response(self, request, response):
+    def process_response(self, request: "HttpRequest", response: "HttpResponse") -> "HttpResponse":
         """Process the response after the view has rendered it."""
         if not response.has_header("Content-Type") or "text/html" not in response["Content-Type"]:
             return response
@@ -49,10 +54,10 @@ class AMPRenderingMiddleware(MiddlewareMixin):
 
         regex = (
             "<script({opt})*\\s+src=['\"]https://cdn"  # noqa: WPS342
-            + "\\.ampproject\\.org/(lts/)?v0\\.m?js['\"]"  # noqa: WPS342
-            + r"({opt})*\s*>\s*</script>"
+            "\\.ampproject\\.org/(lts/)?v0\\.m?js['\"]"  # noqa: WPS342
+            r"({opt})*\s*>\s*</script>"
         ).format(
-            opt="|".join(r"\s+{}".format(pattern) for pattern in attribute_patterns),
+            opt="|".join(rf"\s+{pattern}" for pattern in attribute_patterns),
         )
 
         if not re.search(regex, response_content):

@@ -1,6 +1,6 @@
 # Django AMP Renderer
 
-![Python 3.6+](https://img.shields.io/badge/python-3.6%2B-blue) ![Django 2.2+](https://img.shields.io/badge/django-%202.2%2B-blue) [![Build Status](https://travis-ci.com/chasefinch/django-amp-renderer.svg?branch=main)](https://travis-ci.com/chasefinch/django-amp-renderer) ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+![Python 3.10 | 3.11 | 3.12 | 3.13 | 3.14](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue) [![Build](https://github.com/chasefinch/django-amp-renderer/actions/workflows/build.yml/badge.svg)](https://github.com/chasefinch/django-amp-renderer/actions/workflows/build.yml) ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 Middleware for applying [AMP Renderer](https://github.com/chasefinch/amp-renderer) to the output of a request in Django. Tested in Python 3.8 and above, but works on Python 3.6+.
 

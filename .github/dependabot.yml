@@ -8,3 +8,10 @@ updates:
     open-pull-requests-limit: 100
     pull-request-branch-name:
       separator: "-"
+  - package-ecosystem: "gitsubmodule"
+    target-branch: "main"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    pull-request-branch-name:
+      separator: "-"
