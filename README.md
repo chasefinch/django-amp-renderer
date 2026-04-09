@@ -10,10 +10,10 @@ Install via PyPI:
 
 	pip install django-amp-renderer
 
-To apply the middleware, add `django_amp_renderer.middleware.AMPRenderingMiddleware` to `MIDDLEWARE` in your Django settings file:
+To apply the middleware, add `django_amp_renderer.AMPRenderingMiddleware` to `MIDDLEWARE` in your Django settings file:
 
 	MIDDLEWARE = [
-	    'django_amp_renderer.middleware.AMPRenderingMiddleware',
+	    'django_amp_renderer.AMPRenderingMiddleware',
 	    …
 	]
 
