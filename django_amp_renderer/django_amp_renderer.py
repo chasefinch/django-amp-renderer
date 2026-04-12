@@ -1,19 +1,14 @@
 """Define middleware for applying AMPRenderer to the output of Django views."""
 
-# Standard Library
 import re
 from typing import TYPE_CHECKING
 
-# Third Party
 from amp_renderer import AMPRenderer
-
-# Django
 from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import DjangoUnicodeDecodeError
 
 if TYPE_CHECKING:
-    # Django
     from django.http import HttpRequest, HttpResponse
 
 

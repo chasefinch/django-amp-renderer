@@ -2,17 +2,14 @@
 
 from __future__ import annotations
 
-# Standard Library
 from typing import TYPE_CHECKING
-
-# Third Party
 from unittest.mock import MagicMock, Mock, patch
 
+from django.http import HttpRequest, HttpResponseBase
+
 if TYPE_CHECKING:
-    # Standard Library
     from collections.abc import Callable
 
-# Django AMP Renderer
 from django_amp_renderer import AMPRenderingMiddleware
 
 settings = Mock()
@@ -186,5 +183,5 @@ class TestMiddleware:
         self.renderer.render = MagicMock(return_value="Yay! HTML!")
         mock_amp_renderer.return_value = self.renderer
 
-    def _get_response(self) -> None:
-        pass
+    def _get_response(self, request: HttpRequest) -> HttpResponseBase:
+        return HttpResponseBase()
