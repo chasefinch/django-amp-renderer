@@ -12,4 +12,4 @@ add-trailing-comma==4.0.0
 wemake-python-styleguide==1.6.2
 
 # Type checking
-ty==0.0.33
+ty==0.0.34
