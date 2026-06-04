@@ -4,12 +4,12 @@
 nitpick==0.38.1
 
 # Formatting
-ruff==0.15.10
-docformatter==1.7.7
+ruff==0.15.15
+docformatter==1.7.8
 add-trailing-comma==4.0.0
 
 # Linting (WPS via flake8)
-wemake-python-styleguide==1.6.1
+wemake-python-styleguide==1.6.2
 
 # Type checking
-ty==0.0.31
+ty==0.0.43
