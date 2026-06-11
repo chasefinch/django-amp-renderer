@@ -73,7 +73,7 @@ TRIGGERING = tuple(
 class TestMiddleware:
     """Test the Django AMP Rendering middleware."""
 
-    def setup_method(self, method: Callable) -> None:
+    def setup_method(self, method: Callable[..., None]) -> None:
         """Set up a middleware with mock request values."""
         request = Mock()
         request.META = MagicMock()
@@ -88,7 +88,7 @@ class TestMiddleware:
 
         self.middleware = AMPRenderingMiddleware(self._get_response)
 
-    def teardown_method(self, method: Callable) -> None:
+    def teardown_method(self, method: Callable[..., None]) -> None:
         """Clean up."""
         del self.request
         del self.response
