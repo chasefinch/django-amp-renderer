@@ -1,3 +1,4 @@
+# Copyright (C) 2020 Chase Finch
 """Define middleware for applying AMPRenderer to the output of Django views."""
 
 import re
