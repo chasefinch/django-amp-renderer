@@ -9,7 +9,7 @@ docformatter==1.7.8
 add-trailing-comma==4.0.0
 
 # Linting (WPS via flake8)
-wemake-python-styleguide==1.6.2
+wemake-python-styleguide==1.7.0
 
 # Type checking
 ty==0.0.62
