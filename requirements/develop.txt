@@ -4,7 +4,7 @@
 nitpick==0.38.1
 
 # Formatting
-ruff==0.16.3
+ruff==0.16.4
 docformatter==1.7.8
 add-trailing-comma==4.0.0
 
